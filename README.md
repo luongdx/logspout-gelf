@@ -1,3 +1,7 @@
+# Fork of [Logspout-gelf](https://github.com/micahhausler/logspout-gelf)
+
+This package is a fork of [Logspout-gelf](https://github.com/micahhausler/logspout-gelf). This package attempt to resolve current issues of the package.
+
 # Graylog GELF Module for Logspout
 This module allows Logspout to send Docker logs in the GELF format to Graylog via UDP.
 
@@ -44,3 +48,9 @@ a container with label ```gelf_service=servicename``` will have the extra field 
 
 ## License
 MIT. See [License](LICENSE)
+
+
+## TODO
+
+ - Resolve current issues
+ - Create an image and add an automatic build on update of logspout 
