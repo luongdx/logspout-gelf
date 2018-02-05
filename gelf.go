@@ -21,7 +21,7 @@ func init() {
 
 func shortMessage(msg string) string {
 	if len(msg) == 0 {
-		return ""
+		return "N/A"
 	}	
 	return strings.TrimSpace(msg)
 }
