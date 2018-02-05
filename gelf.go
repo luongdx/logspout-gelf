@@ -20,7 +20,7 @@ func init() {
 
 
 func shortMessage(msg string) string {
-	if msg == nil || len(msg) == 0 {
+	if len(msg) == 0 {
 		return ""
 	}	
 	return strings.TrimSpace(msg)
