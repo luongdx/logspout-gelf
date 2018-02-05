@@ -18,6 +18,14 @@ func init() {
 	router.AdapterFactories.Register(NewGelfAdapter, "gelf")
 }
 
+
+func shortMessage(msg string) string {
+	if msg == nil || len(msg) == 0 {
+		return ""
+	}	
+	return strings.TrimSpace(msg)
+}
+
 // GelfAdapter is an adapter that streams UDP JSON to Graylog
 type GelfAdapter struct {
 	writer *gelf.Writer
@@ -59,15 +67,11 @@ func (a *GelfAdapter) Stream(logstream chan *router.Message) {
 		msg := gelf.Message{
 			Version:  "1.1",
 			Host:     hostname,
-			Short:    m.Message.Data,
+			Short:    shortMessage(m.Message.Data),
 			TimeUnix: float64(m.Message.Time.UnixNano()/int64(time.Millisecond)) / 1000.0,
 			Level:    level,
 			RawExtra: extra,
 		}
-		// 	ContainerId:    m.Container.ID,
-		// 	ContainerImage: m.Container.Config.Image,
-		// 	ContainerName:  m.Container.Name,
-		// }
 
 		// here be message write.
 		if err := a.writer.WriteMessage(&msg); err != nil {
